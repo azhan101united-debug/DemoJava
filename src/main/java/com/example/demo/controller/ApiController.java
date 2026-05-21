@@ -32,6 +32,11 @@ public class ApiController {
         return employeeRepository.findAll();
     }
 
+    @GetMapping("/login")
+    public List<EmployeeEntity> getEmployees() {
+        return employeeRepository.findByEmail();
+    }
+
     @GetMapping("/user/{id}")
     public Optional<EmployeeEntity> getEmployeesById(@PathVariable int id) {
         return employeeRepository.findById(id);
@@ -48,8 +53,9 @@ public class ApiController {
     public String deleteEmployee (@PathVariable int id ){
         if(employeeRepository.existsById(id)){ 
         employeeRepository.deleteById(id);
-        }
-         return ("Employee is deleted with id :" +id);
+        return ("Employee is deleted with id :" +id);
+        } else
+         return ("There is No Employee registered with id :" +id);
     }
 
 
