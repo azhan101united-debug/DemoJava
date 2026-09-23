@@ -3,10 +3,13 @@ package com.example.demo.mapper;
 import com.example.demo.dto.UserResponseDTO;
 import com.example.demo.dto.UserSignUpResponseDTO;
 import com.example.demo.entity.EmployeeEntity;
+import org.springframework.stereotype.Component;
+
 
 /**
  * UserSignUpResponseMapper
  */
+@Component
 public class UserSignUpResponseMapper {
 
 
@@ -15,7 +18,7 @@ public class UserSignUpResponseMapper {
         userSignUpResponseDTO.setId(entity.getId());
         userSignUpResponseDTO.setName(entity.getName());
         userSignUpResponseDTO.setEmail(entity.getEmail());
-        userSignUpResponseDTO.setGender(entity.setGender()); 
+        userSignUpResponseDTO.setGender(entity.getGender()); 
         return userSignUpResponseDTO;
     }
    
@@ -23,7 +26,7 @@ public class UserSignUpResponseMapper {
     {
        EmployeeEntity employeeEntity = new EmployeeEntity();
        employeeEntity.setName(userResponseDTO.getName());
-       employeeEntity.setClass(userResponseDTO.getClassName());
+       employeeEntity.setClassName(userResponseDTO.getClassName());
        employeeEntity.setGender(userResponseDTO.getGender());
        employeeEntity.setAge(userResponseDTO.getAge());
        employeeEntity.setPhoneNumber(userResponseDTO.getPhoneNumber());
