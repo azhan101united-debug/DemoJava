@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.dto.UserResponseDTO;
+import com.example.demo.dto.UserSignUpResponseDTO;
 import com.example.demo.entity.EmployeeEntity;
 import com.example.demo.repository.Repository;
+import com.example.demo.service.UserService;
 
 @RestController
 @RequestMapping("/api/v1")
@@ -21,42 +24,44 @@ public class ApiController {
 
     @Autowired
     private Repository employeeRepository;
+    private UserService service; 
 
     @GetMapping("") // This maps to the base /api/v1 path
      public String welcome() {
      return "Welcome to the Employee API V1!";
 }
 
-    @GetMapping("/user")
-    public List<EmployeeEntity> getAllEmployees() {
-        return employeeRepository.findAll();
-    }
+    // @GetMapping("/user")
+    // public List<EmployeeEntity> getAllEmployees() {
+    //     return employeeRepository.findAll();
+    // }
 
-    @GetMapping("/login")
-    public List<EmployeeEntity> getEmployees() {
-        return employeeRepository.findByEmail();
-    }
+    // @GetMapping("/login")
+    // public List<EmployeeEntity> getEmployees() {
+    //     return employeeRepository.findByEmail();
+    // }
 
-    @GetMapping("/user/{id}")
-    public Optional<EmployeeEntity> getEmployeesById(@PathVariable int id) {
-        return employeeRepository.findById(id);
-    }
+    // @GetMapping("/user/{id}")
+    // public Optional<EmployeeEntity> getEmployeesById(@PathVariable int id) {
+    //     return employeeRepository.findById(id);
+    // }
 
 
     @PostMapping("/signup")
     @SuppressWarnings("null")
-    public EmployeeEntity createEmployee (@RequestBody EmployeeEntity entity  ){
-        return employeeRepository.save(entity);
+    public UserSignUpResponseDTO createEmployee (@RequestBody UserResponseDTO entity  ){
+          UserSignUpResponseDTO response = service.saveUserDetails(entity);
+           return response;
     }
 
-    @DeleteMapping("/user/{id}")
-    public String deleteEmployee (@PathVariable int id ){
-        if(employeeRepository.existsById(id)){ 
-        employeeRepository.deleteById(id);
-        return ("Employee is deleted with id :" +id);
-        } else
-         return ("There is No Employee registered with id :" +id);
-    }
+    // @DeleteMapping("/user/{id}")
+    // public String deleteEmployee (@PathVariable int id ){
+    //     if(employeeRepository.existsById(id)){ 
+    //     employeeRepository.deleteById(id);
+    //     return ("Employee is deleted with id :" +id);
+    //     } else
+    //      return ("There is No Employee registered with id :" +id);
+    // }
 
 
     @GetMapping("/health")

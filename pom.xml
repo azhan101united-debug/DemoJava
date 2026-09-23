@@ -51,6 +51,12 @@
 			<groupId>org.springframework.session</groupId>
 			<artifactId>spring-session-jdbc</artifactId>
 		</dependency>
+		<dependency>
+    <groupId>org.mapstruct</groupId>
+    <artifactId>mapstruct</artifactId>
+    <version>1.5.5.Final</version>
+    <scope>compile</scope>
+</dependency>
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -66,6 +72,7 @@
 
 	<build>
 		<plugins>
+		    
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
