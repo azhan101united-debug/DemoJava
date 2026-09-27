@@ -24,27 +24,21 @@ public class ApiController {
 
     @Autowired
     private Repository employeeRepository;
+
+    @Autowired
     private UserService service; 
 
     @GetMapping("") // This maps to the base /api/v1 path
-     public String welcome() {
-     return "Welcome to the Employee API V1!";
+    public String welcome() {
+    return "Welcome to the Employee API V1!";
 }
 
-    // @GetMapping("/user")
-    // public List<EmployeeEntity> getAllEmployees() {
-    //     return employeeRepository.findAll();
-    // }
 
-    // @GetMapping("/login")
-    // public List<EmployeeEntity> getEmployees() {
-    //     return employeeRepository.findByEmail();
-    // }
+    // @PostMapping("/login")
+    // public UserLoginResponseDTO login(@RequestBody UserLoginRequestDTO request ) {
+    //     UserLoginResponseDTO response = service.login(request);
+    //     return response;
 
-    // @GetMapping("/user/{id}")
-    // public Optional<EmployeeEntity> getEmployeesById(@PathVariable int id) {
-    //     return employeeRepository.findById(id);
-    // }
 
 
     @PostMapping("/signup")
@@ -68,9 +62,4 @@ public class ApiController {
     public String health() {
         return ( "Health Check ok");
     }
-
-
-
-
-    
 }
